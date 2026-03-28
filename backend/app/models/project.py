@@ -31,7 +31,7 @@ class Project(Base):
 
     # Scheduling settings
     data_date: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
-    calendar_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), ForeignKey("calendars.id"), nullable=True)
+    calendar_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True), ForeignKey("calendars.id", use_alter=True, name="fk_project_calendar"), nullable=True)
 
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))

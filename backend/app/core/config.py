@@ -9,7 +9,7 @@ class Settings(BaseSettings):
 
     # Database
     DATABASE_URL: str = "postgresql+asyncpg://infraloc:infraloc@localhost:5432/infraloc"
-    DATABASE_URL_SYNC: str = "postgresql+psycopg2://infraloc:infraloc@localhost:5432/infraloc"
+    DATABASE_URL_SYNC: str = "postgresql+psycopg://infraloc:infraloc@localhost:5432/infraloc"
 
     # Auth
     SECRET_KEY: str = "change-me-in-production"

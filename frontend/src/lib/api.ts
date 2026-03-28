@@ -53,6 +53,8 @@ export const dependenciesApi = {
   list: (projectId: string) => api.get(`/projects/${projectId}/dependencies`),
   create: (projectId: string, data: Record<string, unknown>) =>
     api.post(`/projects/${projectId}/dependencies`, data),
+  delete: (projectId: string, depId: string) =>
+    api.delete(`/projects/${projectId}/dependencies/${depId}`),
 };
 
 // Import

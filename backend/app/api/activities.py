@@ -111,3 +111,18 @@ async def create_dependency(
     await db.flush()
     await db.refresh(dep)
     return dep
+
+
+@router.delete("/dependencies/{dependency_id}")
+async def delete_dependency(
+    project_id: UUID,
+    dependency_id: UUID,
+    user: User = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    result = await db.execute(select(Dependency).where(Dependency.id == dependency_id))
+    dep = result.scalar_one_or_none()
+    if not dep:
+        raise HTTPException(status_code=404, detail="Dependency not found")
+    await db.delete(dep)
+    return {"status": "deleted"}

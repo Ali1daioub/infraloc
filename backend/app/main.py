@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import get_settings
+import app.models  # noqa — ensure all models are registered before API loads
 from app.api import auth, projects, activities, import_file, schedule
 
 settings = get_settings()
